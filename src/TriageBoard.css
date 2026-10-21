@@ -1,0 +1,93 @@
+.triage-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.triage-table-scroll:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 2px;
+}
+
+.triage-table {
+  width: 100%;
+  min-width: 1360px;
+  border-collapse: collapse;
+  background: #fffefa;
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.triage-table th,
+.triage-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.triage-table thead th {
+  color: #f5f3e8;
+  background: var(--forest-deep);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.triage-table td,
+.triage-table tbody th {
+  color: var(--ink);
+}
+
+.triage-table tbody th {
+  font-weight: 400;
+  text-align: left;
+}
+
+.triage-table tbody tr:nth-child(even) {
+  background: #eef1e9;
+}
+
+/* Positions follow patientColumns in patients.js. */
+.triage-table tbody th,
+.triage-table td:nth-child(5),
+.triage-table td:nth-child(7),
+.triage-table td:nth-child(8),
+.triage-table td:nth-child(9),
+.triage-table td:nth-child(10),
+.triage-table td:nth-child(11) {
+  white-space: nowrap;
+}
+
+.triage-table td:nth-child(6),
+.triage-table td:nth-child(12) {
+  min-width: 220px;
+}
+
+.triage-patient-link {
+  padding: 0;
+  border: 0;
+  color: var(--forest);
+  background: none;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.triage-patient-link:hover {
+  color: var(--coral);
+}
+
+.triage-patient-link:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .triage-table th,
+  .triage-table td {
+    padding: 10px 12px;
+  }
+}
