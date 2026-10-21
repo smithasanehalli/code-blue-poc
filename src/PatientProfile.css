@@ -1,0 +1,119 @@
+.profile-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px 24px;
+}
+
+.profile-form {
+  display: grid;
+  gap: 28px;
+  max-width: 980px;
+}
+
+.profile-picker {
+  max-width: 420px;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px 22px;
+}
+
+.profile-field {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  align-content: start;
+}
+
+.profile-field label {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.profile-field input,
+.profile-field select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  color: var(--ink);
+  background: #fffefa;
+  font: inherit;
+  font-size: 15px;
+}
+
+.profile-field input:focus-visible,
+.profile-field select:focus-visible {
+  border-color: var(--forest);
+  outline: 3px solid rgb(23 71 61 / 22%);
+  outline-offset: 2px;
+}
+
+.profile-field [aria-invalid='true'] {
+  border-color: var(--error);
+}
+
+.profile-error {
+  margin: 0;
+  color: var(--error);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.profile-error:empty {
+  display: none;
+}
+
+.profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-button {
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid var(--forest);
+  border-radius: 2px;
+  color: var(--forest);
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.profile-button-primary {
+  border-color: var(--forest-deep);
+  color: #fffdf6;
+  background: var(--forest-deep);
+}
+
+.profile-button:hover:not(:disabled) {
+  border-color: var(--coral);
+  color: #fffdf6;
+  background: var(--coral);
+}
+
+.profile-button:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 3px;
+}
+
+.profile-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.profile-status {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}

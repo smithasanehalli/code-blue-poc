@@ -1,0 +1,132 @@
+.app-layout {
+  --forest: #17473d;
+  --forest-deep: #10372f;
+  --paper: #f4f5ee;
+  --ink: #1e352e;
+  --muted: #63766d;
+  --line: #c8d1c8;
+  --coral: #bd563e;
+  --error: #a13e32;
+
+  min-height: 100svh;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: 'Avenir Next', 'Segoe UI', sans-serif;
+  letter-spacing: 0;
+}
+
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 28px;
+  padding: 14px clamp(20px, 5vw, 64px);
+  color: #f5f3e8;
+  background: var(--forest);
+}
+
+.app-brand {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.app-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-right: auto;
+}
+
+.app-nav-link {
+  padding: 8px 12px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  color: #d5e1d8;
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.app-nav-link:hover {
+  color: #f5f3e8;
+}
+
+.app-nav-link[aria-current='page'] {
+  border-bottom-color: #e0e998;
+  color: #f5f3e8;
+}
+
+.app-nav-link:focus-visible,
+.sign-out-button:focus-visible {
+  outline: 3px solid #e0e998;
+  outline-offset: 2px;
+}
+
+.sign-out-button {
+  padding: 8px 14px;
+  border: 1px solid rgb(245 243 232 / 42%);
+  border-radius: 2px;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sign-out-button:hover {
+  background: var(--coral);
+  border-color: var(--coral);
+}
+
+.app-main {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 40px clamp(20px, 5vw, 64px);
+}
+
+.app-main h1 {
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.demo-note {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 22px;
+  padding: 10px 13px;
+  border-left: 3px solid var(--coral);
+  color: var(--ink);
+  background: #e9eee4;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .app-main {
+    padding: 28px 16px;
+  }
+
+  .app-main h1 {
+    font-size: 34px;
+  }
+
+  .demo-note {
+    font-size: 12px;
+  }
+}

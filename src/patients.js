@@ -1,6 +1,4 @@
-import './PatientList.css'
-
-const patientColumns = [
+export const patientColumns = [
   { key: 'patientId', label: 'Patient ID' },
   { key: 'name', label: 'Name' },
   { key: 'age', label: 'Age' },
@@ -16,7 +14,7 @@ const patientColumns = [
   { key: 'provider', label: 'Provider' },
 ]
 
-const patients = [
+export const demoPatients = [
   {
     patientId: 'ED-1001',
     name: 'Daniel Reyes',
@@ -199,54 +197,83 @@ const patients = [
   },
 ]
 
-function PatientList({ onSignOut }) {
-  return (
-    <main className="patient-list-page">
-      <header className="patient-list-header">
-        <span className="patient-list-brand">CODE BLUE</span>
-        <button className="sign-out-button" type="button" onClick={onSignOut}>
-          Sign out
-        </button>
-      </header>
+const STORAGE_KEY = 'abc-hospital.patients'
 
-      <section className="patient-list-content" aria-labelledby="patient-list-title">
-        <h1 id="patient-list-title">Patient List</h1>
-        <p className="patient-list-demo-note">
-          Demo data only. These example records are not live patient information
-          and must not be used for clinical decisions.
-        </p>
-        <table>
-          <caption className="patient-list-visually-hidden">
-            Demo patients (dummy data)
-          </caption>
-          <thead>
-            <tr>
-              {patientColumns.map((column) => (
-                <th key={column.key} scope="col">
-                  {column.label}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {patients.map((patient) => (
-              <tr key={patient.patientId}>
-                {patientColumns.map((column) =>
-                  column.key === 'patientId' ? (
-                    <th key={column.key} scope="row">
-                      {patient[column.key]}
-                    </th>
-                  ) : (
-                    <td key={column.key}>{patient[column.key]}</td>
-                  ),
-                )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
-    </main>
+const demoPatientIds = new Set(demoPatients.map((patient) => patient.patientId))
+
+function isValidStoredPatients(value) {
+  return (
+    Array.isArray(value) &&
+    value.length === demoPatients.length &&
+    value.every(
+      (patient) =>
+        patient &&
+        typeof patient === 'object' &&
+        demoPatientIds.has(patient.patientId) &&
+        patientColumns.every((column) => column.key in patient),
+    )
   )
 }
 
-export default PatientList
+export function loadPatients() {
+  try {
+    const stored = JSON.parse(localStorage.getItem(STORAGE_KEY))
+    if (isValidStoredPatients(stored)) {
+      return stored
+    }
+  } catch {
+    // Unreadable or malformed storage falls back to the demo data below.
+  }
+  return demoPatients
+}
+
+// Both return false when browser storage is unavailable (blocked or full).
+export function savePatients(patients) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(patients))
+    return true
+  } catch {
+    return false
+  }
+}
+
+export function clearSavedPatients() {
+  try {
+    localStorage.removeItem(STORAGE_KEY)
+    return true
+  } catch {
+    return false
+  }
+}
+
+const fieldRules = {
+  name: { required: true, message: 'Enter a name.' },
+  age: { pattern: /^\d{1,3}$/, max: 130, message: 'Enter an age from 0 to 130.' },
+  sex: { pattern: /^[MF]$/, message: 'Select M or F.' },
+  arrival: { pattern: /^([01]\d|2[0-3]):[0-5]\d$/, message: 'Enter a time as HH:mm.' },
+  chiefComplaint: { required: true, message: 'Enter a chief complaint.' },
+  esi: { pattern: /^[1-5]$/, message: 'Enter an ESI level from 1 to 5.' },
+  hr: { pattern: /^\d{1,3}$/, max: 300, message: 'Enter a heart rate from 0 to 300.' },
+  bp: { pattern: /^\d{2,3}\/\d{2,3}$/, message: 'Enter BP as systolic/diastolic, e.g. 120/80.' },
+  spo2: { pattern: /^\d{1,3}%$/, max: 100, message: 'Enter SpO₂ as a percentage, e.g. 98%.' },
+  bed: { required: true, message: 'Enter a bed.' },
+  status: { required: true, message: 'Enter a status.' },
+  provider: { required: true, message: 'Enter a provider or "Unassigned".' },
+}
+
+export const numericFields = new Set(['age', 'esi', 'hr'])
+
+export function validatePatient(draft) {
+  const errors = {}
+  for (const [key, rule] of Object.entries(fieldRules)) {
+    const value = String(draft[key] ?? '').trim()
+    const invalid =
+      (rule.required && !value) ||
+      (rule.pattern && !rule.pattern.test(value)) ||
+      (rule.max !== undefined && parseInt(value, 10) > rule.max)
+    if (invalid) {
+      errors[key] = rule.message
+    }
+  }
+  return errors
+}

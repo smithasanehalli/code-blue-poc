@@ -1,9 +1,17 @@
 import { useState } from 'react'
-import PatientList from './PatientList.jsx'
+import AppLayout from './AppLayout.jsx'
+import PatientProfile from './PatientProfile.jsx'
+import TriageBoard from './TriageBoard.jsx'
+import {
+  clearSavedPatients,
+  demoPatients,
+  loadPatients,
+  savePatients,
+} from './patients.js'
 import './App.css'
 
-const DEMO_EMAIL = 'demo@codeblue.com'
-const DEMO_PASSWORD = 'codeblue123'
+const DEMO_EMAIL = 'demo@abchospital.com'
+const DEMO_PASSWORD = 'abchospital123'
 
 function Login({ onSignIn }) {
   const [errors, setErrors] = useState({})
@@ -42,7 +50,7 @@ function Login({ onSignIn }) {
 
         <div className="aside-message">
           <p className="eyebrow">A SIGN-IN PREVIEW</p>
-          <h2>Welcome to Code Blue</h2>
+          <h2>Welcome to ABC Hospital</h2>
           <p>
             Explore the form experience. This prototype does not access an
             account.
@@ -111,12 +119,61 @@ function Login({ onSignIn }) {
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false)
+  const [activeModule, setActiveModule] = useState('triage')
+  const [patients, setPatients] = useState(loadPatients)
+  const [selectedPatientId, setSelectedPatientId] = useState(
+    demoPatients[0].patientId,
+  )
+  const [dataVersion, setDataVersion] = useState(0)
 
-  if (isSignedIn) {
-    return <PatientList onSignOut={() => setIsSignedIn(false)} />
+  function handleSignIn() {
+    setActiveModule('triage')
+    setIsSignedIn(true)
   }
 
-  return <Login onSignIn={() => setIsSignedIn(true)} />
+  function handleOpenPatient(patientId) {
+    setSelectedPatientId(patientId)
+    setActiveModule('profile')
+  }
+
+  function handleSavePatient(updatedPatient) {
+    const nextPatients = patients.map((patient) =>
+      patient.patientId === updatedPatient.patientId ? updatedPatient : patient,
+    )
+    setPatients(nextPatients)
+    return savePatients(nextPatients)
+  }
+
+  function handleResetAll() {
+    clearSavedPatients()
+    setPatients(demoPatients)
+    setDataVersion((version) => version + 1)
+  }
+
+  if (!isSignedIn) {
+    return <Login onSignIn={handleSignIn} />
+  }
+
+  return (
+    <AppLayout
+      activeModule={activeModule}
+      onNavigate={setActiveModule}
+      onSignOut={() => setIsSignedIn(false)}
+    >
+      {activeModule === 'triage' ? (
+        <TriageBoard patients={patients} onOpenPatient={handleOpenPatient} />
+      ) : (
+        <PatientProfile
+          patients={patients}
+          dataVersion={dataVersion}
+          selectedPatientId={selectedPatientId}
+          onSelectPatient={setSelectedPatientId}
+          onSavePatient={handleSavePatient}
+          onResetAll={handleResetAll}
+        />
+      )}
+    </AppLayout>
+  )
 }
 
 export default App
