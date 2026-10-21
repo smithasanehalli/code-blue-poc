@@ -51,7 +51,12 @@
 }
 
 .patient-list-content {
+  box-sizing: border-box;
+  max-width: 100%;
   padding: 40px clamp(20px, 5vw, 64px);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .patient-list-content h1 {
@@ -61,8 +66,104 @@
   font-weight: 400;
 }
 
-.patient-list-empty {
-  margin: 0;
-  color: var(--muted);
-  font-size: 15px;
+.patient-list-demo-note {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 22px;
+  padding: 10px 13px;
+  border-left: 3px solid var(--coral);
+  color: var(--ink);
+  background: #e9eee4;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.patient-list-content table {
+  width: 100%;
+  min-width: 1360px;
+  border-collapse: collapse;
+  background: #fffefa;
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.patient-list-content th,
+.patient-list-content td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.patient-list-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.patient-list-content thead th {
+  color: #f5f3e8;
+  background: var(--forest-deep);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.patient-list-content td,
+.patient-list-content tbody th {
+  color: var(--ink);
+}
+
+.patient-list-content tbody th {
+  font-weight: 400;
+  text-align: left;
+}
+
+.patient-list-content tbody tr:nth-child(even) {
+  background: #eef1e9;
+}
+
+.patient-list-content tbody tr:hover {
+  background: #e5edda;
+}
+
+.patient-list-content tbody th,
+.patient-list-content td:nth-child(5),
+.patient-list-content td:nth-child(7),
+.patient-list-content td:nth-child(8),
+.patient-list-content td:nth-child(9),
+.patient-list-content td:nth-child(10),
+.patient-list-content td:nth-child(11) {
+  white-space: nowrap;
+}
+
+.patient-list-content td:nth-child(6),
+.patient-list-content td:nth-child(12) {
+  min-width: 220px;
+}
+
+@media (max-width: 600px) {
+  .patient-list-content {
+    padding: 28px 16px;
+  }
+
+  .patient-list-content h1 {
+    font-size: 34px;
+  }
+
+  .patient-list-demo-note {
+    font-size: 12px;
+  }
+
+  .patient-list-content table {
+    min-width: 1360px;
+  }
+
+  .patient-list-content th,
+  .patient-list-content td {
+    padding: 10px 12px;
+  }
 }
