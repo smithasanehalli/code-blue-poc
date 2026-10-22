@@ -15,7 +15,6 @@
   --line: #c8d1c8;
   --coral: #bd563e;
   --error: #a13e32;
-  --success-bg: #e5edda;
 
   display: grid;
   grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
@@ -227,16 +226,6 @@
 .sign-in-button:focus-visible {
   outline: 3px solid var(--coral);
   outline-offset: 3px;
-}
-
-.prototype-notice {
-  margin: 0;
-  padding: 14px 16px;
-  border-left: 3px solid var(--forest);
-  color: var(--ink);
-  background: var(--success-bg);
-  font-size: 14px;
-  line-height: 1.5;
 }
 
 @keyframes panel-arrive {
