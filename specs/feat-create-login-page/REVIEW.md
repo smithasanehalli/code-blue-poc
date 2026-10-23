@@ -4,7 +4,7 @@
 - **Reviewed on**: 2026-10-22
 - **Base**: none (feature first committed together with `feat-fake-sign-in-to-patient-list` in `e16dd3e`; no isolated diff exists)   **Head**: `main` @ `c1b5e4b`
 - **Scope method**: tasks.md (files named in T001-T004)
-- **Files reviewed**: 2 (~507 lines): `src/App.jsx` (`Login` component and its use in `App`), `src/App.css`   **Excluded**: `AppLayout.*`, `TriageBoard.*`, `PatientProfile.*`, `patients.js` (other features)
+- **Files reviewed**: 2 (~507 lines): `src/App.jsx` (`Login` component and its use in `App`), `src/App.css`   **Excluded**: `AppLayout.*`, `TriageBoard.*`, `PatientDetails.*`, `patients.js` (other features)
 - **Commands run**: `npm run lint` (pass), `npm run build` (pass)
 
 ## Verdict: APPROVE WITH COMMENTS

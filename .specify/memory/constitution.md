@@ -67,20 +67,20 @@ legacy_signals: false
     App.jsx        login screen + top-level state + module switch
     AppLayout.jsx  header, module nav, sign out
     TriageBoard.jsx
-    PatientProfile.jsx
+    PatientDetails.jsx
     patients.js    demo data, column config, localStorage, validation
     *.css          one per component, plus App.css and index.css
     assets/        hero.png, react.svg, vite.svg
   specs/           SDD feature specs
   .specify/        SDD templates, scripts, memory
   ```
-- **Naming**: components use PascalCase `.jsx` files (`App.jsx`, `AppLayout.jsx`, `TriageBoard.jsx`, `PatientProfile.jsx`). Each component has a matching `.css` file with the same name. Non-component modules use lowercase `.js` (`patients.js`; only one example). [Detected]
-- **Component style**: function components declared as `function Name({ ...props })`, with props destructured in the signature and `export default` at the end of the file (`App.jsx`, `AppLayout.jsx`, `TriageBoard.jsx`, `PatientProfile.jsx`). Event handlers are named `handleX`, and callback props are named `onX` (`App.jsx`, `AppLayout.jsx`, `PatientProfile.jsx`). [Detected]
+- **Naming**: components use PascalCase `.jsx` files (`App.jsx`, `AppLayout.jsx`, `TriageBoard.jsx`, `PatientDetails.jsx`). Each component has a matching `.css` file with the same name. Non-component modules use lowercase `.js` (`patients.js`; only one example). [Detected]
+- **Component style**: function components declared as `function Name({ ...props })`, with props destructured in the signature and `export default` at the end of the file (`App.jsx`, `AppLayout.jsx`, `TriageBoard.jsx`, `PatientDetails.jsx`). Event handlers are named `handleX`, and callback props are named `onX` (`App.jsx`, `AppLayout.jsx`, `PatientDetails.jsx`). [Detected]
 - **CSS classes**: kebab-case, prefixed with the component or area name (`login-*` in `App.jsx`, `app-*` in `AppLayout.jsx`, `triage-*` in `TriageBoard.jsx`). [Detected]
-- **Accessibility**: ARIA attributes are used throughout: `aria-labelledby`, `aria-current`, `aria-invalid`, `aria-describedby`, `aria-live`, table `scope` (`App.jsx`, `AppLayout.jsx`, `TriageBoard.jsx`, `PatientProfile.jsx`). [Detected]
+- **Accessibility**: ARIA attributes are used throughout: `aria-labelledby`, `aria-current`, `aria-invalid`, `aria-describedby`, `aria-live`, table `scope` (`App.jsx`, `AppLayout.jsx`, `TriageBoard.jsx`, `PatientDetails.jsx`). [Detected]
 - **API access lives in**: no network API. Data access and persistence are centralized in `src/patients.js` (`localStorage`). [Detected]
 - **Tests live in**: no tests found
-- **Import style**: relative imports with explicit extensions (`./App.jsx`, `./patients.js`); no path aliases (`main.jsx`, `App.jsx`, `TriageBoard.jsx`, `PatientProfile.jsx`). [Detected]
+- **Import style**: relative imports with explicit extensions (`./App.jsx`, `./patients.js`); no path aliases (`main.jsx`, `App.jsx`, `TriageBoard.jsx`, `PatientDetails.jsx`). [Detected]
 
 ## 4. Proposed Principles (REQUIRES HUMAN CONFIRMATION)
 

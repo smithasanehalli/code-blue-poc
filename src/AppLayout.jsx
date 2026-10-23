@@ -2,7 +2,7 @@ import './AppLayout.css'
 
 const modules = [
   { id: 'triage', label: 'TriageBoard' },
-  { id: 'profile', label: 'Patient Profile' },
+  { id: 'profile', label: 'Patient Details' },
 ]
 
 function AppLayout({ activeModule, onNavigate, onSignOut, children }) {

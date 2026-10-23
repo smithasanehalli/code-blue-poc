@@ -59,10 +59,10 @@ This is a small, single-package React 19 + Vite prototype: 12 source files and a
 |---|---|---|
 | `src/App.css` | 328 | Login screen styles (`login-*`, `aside-*`, form fields, sign-in button) |
 | `src/patients.js` | 279 | Demo patient records (most of the file), column config, `localStorage` load/save/clear, field validation |
-| `src/PatientProfile.jsx` | 187 | Patient selector and edit form with draft state, dirty check, validation and save |
+| `src/PatientDetails.jsx` | 187 | Patient selector and edit form with draft state, dirty check, validation and save |
 | `src/App.jsx` | 179 | Login component, plus top-level app state (sign-in, active module, patients) and screen switching |
 | `src/AppLayout.css` | 132 | Header, module nav and sign-out styles |
-| `src/PatientProfile.css` | 119 | Profile form styles |
+| `src/PatientDetails.css` | 119 | Profile form styles |
 | `src/index.css` | 111 | Global CSS variables and base element styles (includes Vite starter rules such as `.counter`, which no component uses) |
 | `src/TriageBoard.css` | 93 | Scrollable triage table styles |
 | `src/TriageBoard.jsx` | 60 | Read-only patient table; Patient ID opens the profile |
@@ -91,7 +91,7 @@ These are not claimed to be outdated. They are listed for a human to check again
 5. `src/patients.js`: the patient data model, persistence, and validation rules.
 6. `src/AppLayout.jsx`: the shell and module navigation.
 7. `src/TriageBoard.jsx`: the simplest feature, and a good template for new modules.
-8. `src/PatientProfile.jsx`: the most involved feature (form state, dirty check, save).
+8. `src/PatientDetails.jsx`: the most involved feature (form state, dirty check, save).
 
 (No test or CI file exists to add to this list.)
 

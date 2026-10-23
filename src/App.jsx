@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import AppLayout from './AppLayout.jsx'
-import PatientProfile from './PatientProfile.jsx'
+import PatientDetails from './PatientDetails.jsx'
 import TriageBoard from './TriageBoard.jsx'
 import {
   clearSavedPatients,
@@ -163,7 +163,7 @@ function App() {
       {activeModule === 'triage' ? (
         <TriageBoard patients={patients} onOpenPatient={handleOpenPatient} />
       ) : (
-        <PatientProfile
+        <PatientDetails
           patients={patients}
           dataVersion={dataVersion}
           selectedPatientId={selectedPatientId}

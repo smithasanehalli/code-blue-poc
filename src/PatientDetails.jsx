@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { numericFields, patientColumns, validatePatient } from './patients.js'
-import './PatientProfile.css'
+import './PatientDetails.css'
 
 const editableColumns = patientColumns.filter((column) => column.key !== 'patientId')
 
@@ -144,7 +144,7 @@ function ProfileForm({ patient, patients, onSelectPatient, onSavePatient }) {
   )
 }
 
-function PatientProfile({
+function PatientDetails({
   patients,
   dataVersion,
   selectedPatientId,
@@ -162,9 +162,9 @@ function PatientProfile({
   }
 
   return (
-    <section aria-labelledby="patient-profile-title">
+    <section aria-labelledby="patient-details-title">
       <div className="profile-heading">
-        <h1 id="patient-profile-title">Patient Profile</h1>
+        <h1 id="patient-details-title">Patient Details</h1>
         <button className="profile-button" type="button" onClick={handleResetAll}>
           Reset demo data
         </button>
@@ -184,4 +184,4 @@ function PatientProfile({
   )
 }
 
-export default PatientProfile
+export default PatientDetails
